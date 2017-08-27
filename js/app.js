@@ -356,8 +356,6 @@ $(function() {
 
   $('.panel-tablero').disableSelection();
 
-
-  // validar solo un click
   $('.btn-reinicio').on('click', function() {
     if($('.btn-reinicio').text()=="Iniciar"){
       $('.btn-reinicio').html("Reiniciar");
