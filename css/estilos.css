@@ -104,3 +104,11 @@ div[class^='col']{
   height: 96px;
 
 }
+
+.game-over{
+  display: none;
+  font-family: gameFont;
+  font-size: 1.2em;
+  color: #DCFF0E;
+  text-align: center;
+}

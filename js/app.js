@@ -3,6 +3,28 @@ var h_array = [];
 var point = 0;
 var move = 0;
 
+/* Titulo animado */
+
+function pre_title(titulo) {
+  var title = titulo;
+  title.animate({
+    'color': 'rgb(255,255,255);'
+  }, 'slow');
+  setTimeout(function(){
+    pos_title(title);
+  },100);
+}
+
+function pos_title(titulo) {
+  var title = titulo;
+  title.animate({
+    'color': 'rgb(220, 255, 14);'
+  }, 'slow');
+  setTimeout(function(){
+    pre_title(title);
+  },100);
+}
+
 /* Drag and drop */
 function drag_drop() {
 
@@ -56,25 +78,6 @@ function randomFill() {
     num[i] = Math.floor(Math.random() * dulces);
   }
 }
-
-/* Titulo animado */
-
-function pre_title(titulo) {
-  var title = titulo;
-  title.animate({
-    'color': 'rgb(255,255,255);'
-  }, 'slow');
-  pos_title(title);
-}
-
-function pos_title(titulo) {
-  var title = titulo;
-  title.animate({
-    'color': 'rgb(220, 255, 14);'
-  }, 'slow');
-  pre_title(title);
-}
-
 
 /* Inicializar Juego */
 
@@ -296,7 +299,7 @@ function eliminar(z, x, c, v, b, n, m, q, w) {
     }
   } else if (vh == "horizontal") {
     for (var i = min; i <= max; i++) {
-
+      // funcion invalidar el click
       $('#sortable' + (i + 1) + ' li:nth-child(' + (pos) + ')').animate({
         opacity: 0
       }, 600);
@@ -345,7 +348,7 @@ function rellenar(a, c) {
 }
 
 function puntuacion() {
-  point = point + 20;
+  point = point + 45;
   $('#score-text').html(point);
 }
 
@@ -353,12 +356,19 @@ $(function() {
 
   $('.panel-tablero').disableSelection();
 
+
   // validar solo un click
   $('.btn-reinicio').on('click', function() {
-    $('.btn-reinicio').html("Reiniciar");
-    inicio();
-    validar();
+    if($('.btn-reinicio').text()=="Iniciar"){
+      $('.btn-reinicio').html("Reiniciar");
+      inicio();
+      validar();
+    }else if($('.btn-reinicio').html("Reiniciar")){
+      location.reload(true);
+    }
   })
 
+
   pre_title($('.main-titulo'));
+
 })
